@@ -30,7 +30,16 @@ head_node = None
 tail_node = None
 
 
-user_input = list(map(int,input("Enter numbers : ").split()))
+user_input = input("Enter numbers : ")
+
+print(user_input)
+temp_list = []
+
+for i in user_input.split():
+    if i.isdigit():
+        temp_list.append(int(i))
+
+user_input = temp_list
 
 for num in user_input:
     new_node = Node(num)
@@ -106,4 +115,49 @@ def insert_at_position(head_node,data,k):
 
 print("insert at position : ")
 head_node = insert_at_position(head_node,2,2)
+print_forward(head_node)
+
+def delete_at_position(head_node,k):
+    n = get_length(head_node)
+    if n==0 or k>n:
+        return head_node
+
+    if k == 1:
+        new_head = head_node.next
+        head_node.next = None
+        new_head.prev = None
+        return new_head
+    temp_node = head_node
+    while k>2 and temp_node:
+        k-=1
+        temp_node = temp_node.next
+
+    temp_node.next = temp_node.next.next
+    temp_node.next.next.prev = temp_node
+    return head_node
+
+print("delete at position : ")
+head_node = delete_at_position(head_node,6)
+print_forward(head_node)
+
+def update_at_position(head_node,data,k):
+    n = get_length(head_node)
+    if n==0 or k>n:
+        return head_node
+
+    if k==1:
+        head_node.data = data
+        return head_node
+
+    temp_node = head_node
+    while k>2 and temp_node:
+        k-=1
+        temp_node = temp_node.next
+
+    if temp_node.next:
+        temp_node.next.data = data
+    return head_node
+
+print("update at position : ")
+head_node = update_at_position(head_node,69,6)
 print_forward(head_node)
