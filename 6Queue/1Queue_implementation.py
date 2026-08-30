@@ -83,3 +83,9 @@ queue.pop()
 
 queue.dispaly()
 
+queue.pop()
+queue.dispaly()
+queue.pop()
+
+
+
