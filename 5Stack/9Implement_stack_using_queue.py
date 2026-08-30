@@ -52,7 +52,7 @@ class StackQueue:
                 return None
             return self.stackqueue.queue[0]
 
-    def dispaly(self):
+    def display(self):
         print(list(self.stackqueue.queue))
 
 queue = StackQueue(5)
@@ -62,10 +62,10 @@ queue.push(4)
 queue.push(3)
 queue.push(2)
 
-queue.dispaly()
+queue.display()
 queue.push(9)
 
-queue.dispaly()
+queue.display()
 
 queue.push(10)
 
@@ -73,7 +73,7 @@ queue.pop()
 queue.pop()
 queue.pop()
 
-queue.dispaly()
+queue.display()
 
 print("top of the stack is : ",queue.peek())
 
