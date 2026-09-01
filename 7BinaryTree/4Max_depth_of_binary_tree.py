@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Node:
     def __init__(self,data):
         self.data = data
@@ -37,6 +40,23 @@ class BinaryTree:
 
         return max(left,right)
 
+    def max_depth_iterative(self, root, level):
+        if root is None:
+            return 0 
+
+        queue = deque([root])
+
+        while queue:
+            size = len(queue)
+            for i in range(size):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            level += 1
+        return level
+
 binary = BinaryTree()
 
 binary.root = binary.construct_tree()
@@ -44,3 +64,6 @@ binary.root = binary.construct_tree()
 
 result = binary.max_depth(binary.root)
 print("Max depth of binary tree is : ",result)
+
+iterative_result = binary.max_depth_iterative(binary.root,0)
+print("Max depth of binary tree iterative is : ", iterative_result)
